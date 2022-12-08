@@ -12,7 +12,12 @@ const isManager = (id) => employees.reduce((managers, currEmplo) => (
 // };
 
 const getRelatedEmployees = (managerId) => {
-  // seu código aqui
+  if (isManager(managerId)) {
+    return employees.reduce((acc, { managers, firstName, lastName }) => (
+      managers.includes(managerId) ? [...acc, `${firstName} ${lastName}`] : acc
+    ), []);
+  }
+  throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
 };
 
 module.exports = { isManager, getRelatedEmployees };
