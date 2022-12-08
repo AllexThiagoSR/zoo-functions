@@ -9,8 +9,10 @@ const countAnimals = (animal) => {
       [name]: residents.length,
     }), {});
   }
+
   const { species: specie, sex: sexReq } = animal;
   const residentsFound = species.find(({ name }) => name === specie).residents;
+
   if (!sexReq) return residentsFound.length;
   return residentsFound.filter(({ sex }) => sex === sexReq).length;
 };
