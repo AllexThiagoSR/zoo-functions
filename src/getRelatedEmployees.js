@@ -1,8 +1,8 @@
 const { employees } = require('../data/zoo_data');
 const data = require('../data/zoo_data');
 
-const isManager = (id) => employees.reduce((managers, currEmplo) => (
-  [...managers, ...currEmplo.managers]
+const isManager = (id) => employees.reduce((allManagers, { managers }) => (
+  [...allManagers, ...managers]
 ), []).includes(id);
 
 // const isManager = (id) => {
