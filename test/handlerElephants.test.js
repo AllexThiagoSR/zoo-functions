@@ -43,4 +43,9 @@ describe('Testes da função handlerElephants', () => {
   it('Teste: Se retorna null quando for passada uma string de um argumento que não existe como parâmetro', () => {
     expect(handlerElephants('ages')).toBe(null);
   });
+
+  it('Teste: Se retorna a string "Parâmetro inválido, é necessário uma string" quando for passada um parâmetro de um tipo diferente de string', () => {
+    expect(typeof handlerElephants(1)).not.toBe('string');
+    expect(handlerElephants(true)).not.toBe('Parâmetro inválido, é necessário uma string');
+  });
 });
