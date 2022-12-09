@@ -3,10 +3,8 @@ const data = require('../data/zoo_data');
 const { employees, species } = data;
 
 const getEmployee = (info) => {
-  if (!info) {
-    return null;
-  }
-  const { name = '', id: idRec = '' } = info;
+  if (!info) return null;
+  const { name, id: idRec } = info;
   return employees.find(({ id, lastName, firstName }) =>
     (id === idRec || lastName === name || firstName === name));
 };
