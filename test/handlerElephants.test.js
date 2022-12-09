@@ -25,8 +25,13 @@ describe('Testes da função handlerElephants', () => {
     expect(handlerElephants('availability')).toEqual(['Friday', 'Saturday', 'Sunday', 'Tuesday']);
   });
 
-  it('Teste: Se retorna 10.5 com dias da semana quando for passada a string "averageAge" como parâmetro', () => {
+  it('Teste: Se retorna 10.5 quando for passada a string "averageAge" como parâmetro', () => {
     expect(typeof handlerElephants('averageAge')).toBe('number');
     expect(handlerElephants('averageAge')).toBe(10.5);
+  });
+
+  it('Teste: Se retorna 4 quando for passada a string "count" como parâmetro', () => {
+    expect(typeof handlerElephants('count')).toBe('number');
+    expect(handlerElephants('count')).toBe(4);
   });
 });
