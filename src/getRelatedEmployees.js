@@ -2,7 +2,7 @@ const { employees } = require('../data/zoo_data');
 const data = require('../data/zoo_data');
 
 const isManager = (id) => employees.reduce((allManagers, { managers }) => (
-  [...allManagers, ...managers]
+  allManagers.includes(id) ? allManagers : [...allManagers, ...managers]
 ), []).includes(id);
 
 // const isManager = (id) => {
@@ -20,4 +20,5 @@ const getRelatedEmployees = (managerId) => {
   throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
 };
 
+isManager();
 module.exports = { isManager, getRelatedEmployees };
