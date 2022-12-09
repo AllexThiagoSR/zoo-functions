@@ -13,18 +13,19 @@ const creatDaySchedule = (day) => ({
   exhibition: mapSpeciesExhibitionNames(filterSpeciesExhibition(day)),
 });
 
-const creatClosedDay = (day) => ({
+const creatClosedDay = () => ({
   officeHour: 'CLOSED',
   exhibition: 'The zoo will be closed!',
 });
 
 const checkAnimal = (animal) => species.find(({ name }) => name === animal);
 
-const isClosed = (day) => (!closedDays.includes(day) ? creatDaySchedule(day) : creatClosedDay(day));
+const isClosed = (day) => (!closedDays.includes(day) ? creatDaySchedule(day) : creatClosedDay());
 
 const getSchedule = (target) => {
   const days = Object.keys(hours);
   const animal = checkAnimal(target);
+
   if (animal !== undefined) return animal.availability;
   if (days.includes(target)) return { [target]: isClosed(target) };
   return days.reduce((schedule, currDay) => {
