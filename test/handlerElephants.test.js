@@ -34,4 +34,13 @@ describe('Testes da função handlerElephants', () => {
     expect(typeof handlerElephants('count')).toBe('number');
     expect(handlerElephants('count')).toBe(4);
   });
+
+  it('Teste: Se retorna um array com nomes quando for passada a string "names" como parâmetro', () => {
+    expect(Array.isArray(handlerElephants('names'))).toBe(true);
+    expect(handlerElephants('names')).toEqual(['Ilana', 'Orval', 'Bea', 'Jefferson']);
+  });
+
+  it('Teste: Se retorna null quando for passada uma string de um argumento que não existe como parâmetro', () => {
+    expect(handlerElephants('ages')).toBe(null);
+  });
 });
