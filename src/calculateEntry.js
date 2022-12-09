@@ -1,5 +1,7 @@
 const data = require('../data/zoo_data');
 
+const { prices } = data;
+
 const entrant = [
   { name: 'Lara Carvalho', age: 5 },
   { name: 'Frederico Moreira', age: 5 },
@@ -18,8 +20,9 @@ const countEntrants = (entrants) => entrants.reduce((count, { age }) => {
 }, { child: 0, adult: 0, senior: 0 });
 
 const calculateEntry = (entrants) => {
-  // seu código aqui
+  if (entrant.length === 0 || !Array.isArray(entrants)) return 0;
+  const counted = countEntrants(entrants);
+  return Object.keys(counted).reduce((acc, curr) => acc + prices[curr] * counted[curr], 0);
 };
 
-console.log(countEntrants(entrant));
 module.exports = { calculateEntry, countEntrants };
