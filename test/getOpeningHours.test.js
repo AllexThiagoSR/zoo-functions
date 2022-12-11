@@ -1,5 +1,8 @@
 const getOpeningHours = require('../src/getOpeningHours');
 
+const closed = 'The zoo is closed';
+const opened = 'The zoo is open';
+
 describe('Testes da função getOpeningHours', () => {
   it('Teste: Se getOpeningHours realmente existe e é uma função', () => {
     expect(getOpeningHours).not.toBeUndefined();
@@ -17,9 +20,19 @@ describe('Testes da função getOpeningHours', () => {
     });
   });
   it('Teste: Se retorna "The zoo is open" se for passado um dia e horário que zoológico deve estar aberto', () => {
-    expect(getOpeningHours('wednesday', '8:30-am')).toBe('The zoo is open');
+    expect(getOpeningHours('wednesday', '8:30-am')).toBe(opened);
+    expect(getOpeningHours('sunday', '1:30-pm')).toBe(opened);
   });
-  it('Teste: Se retorna "The zoo is close" se for passado parâmetros inválidos', () => {
-    expect(getOpeningHours('', '')).toBe('The zoo is open');
+  // it('Teste: Se retorna "The zoo is close" se for passado um dia inválido', () => {
+  //   expect(getOpeningHours('day', '8:00-pm')).toBe(closed);
+  //   expect(getOpeningHours('monday', '8:00-pm')).toBe(closed);
+  // });
+  it('Teste: Se retorna "The zoo is close" se for passado um horário que o zoológico devia estar fechado', () => {
+    expect(getOpeningHours('thursday', '8:00-pm')).toBe(closed);
+    expect(getOpeningHours('tuesday', '1:00-am')).toBe(closed);
+  });
+  it('Teste: Se retorna "The zoo is close" se for passado um horário que o zoológico devia estar fechado', () => {
+    expect(getOpeningHours('thursday', '8:00-pm')).toBe(closed);
+    expect(getOpeningHours('tuesday', '1:00-am')).toBe(closed);
   });
 });
