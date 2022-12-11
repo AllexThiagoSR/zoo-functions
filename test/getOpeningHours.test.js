@@ -16,4 +16,7 @@ describe('Testes da função getOpeningHours', () => {
       Monday: { open: 0, close: 0 },
     });
   });
+  it('Teste: Se retorna "The zoo is open" se for passado um dia e horário que zoológico deve estar aberto', () => {
+    expect(getOpeningHours('wednesday', '8:30-am')).toBe('The zoo is open');
+  });
 });
