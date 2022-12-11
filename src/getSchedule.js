@@ -10,7 +10,7 @@ const mapSpeciesExhibitionNames = (speciesOfDay) => speciesOfDay.map(({ name }) 
 
 const creatDaySchedule = (day) => ({
   officeHour: `Open from ${hours[day].open}am until ${hours[day].close}pm`,
-  exhibition: mapSpeciesExhibitionNames(filterSpeciesExhibition(day)),
+  exhibition: mapSpeciesExhibitionNames(filterSpeciesExhibition(day).map),
 });
 
 const creatClosedDay = () => ({

@@ -32,6 +32,7 @@ describe('Testes da função getOpeningHours', () => {
     expect(getOpeningHours('thursday', '8:00-pm')).toBe(closed);
     expect(getOpeningHours('tuesday', '1:00-am')).toBe(closed);
     expect(getOpeningHours('sunday', '12:30-am')).toBe(closed);
+    expect(getOpeningHours('monday', '1:00-pm')).toBe(closed);
   });
   it('Teste: Se lança os erros corretamente', () => {
     expect(() => getOpeningHours('thrsday', '8:00-pm')).toThrow();
