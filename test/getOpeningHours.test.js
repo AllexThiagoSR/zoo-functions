@@ -22,6 +22,7 @@ describe('Testes da função getOpeningHours', () => {
   it('Teste: Se retorna "The zoo is open" se for passado um dia e horário que zoológico deve estar aberto', () => {
     expect(getOpeningHours('wednesday', '8:30-am')).toBe(opened);
     expect(getOpeningHours('sunday', '1:30-pm')).toBe(opened);
+    expect(getOpeningHours('sunday', '12:30-pm')).toBe(opened);
   });
   // it('Teste: Se retorna "The zoo is close" se for passado um dia inválido', () => {
   //   expect(getOpeningHours('day', '8:00-pm')).toBe(closed);
@@ -30,9 +31,18 @@ describe('Testes da função getOpeningHours', () => {
   it('Teste: Se retorna "The zoo is close" se for passado um horário que o zoológico devia estar fechado', () => {
     expect(getOpeningHours('thursday', '8:00-pm')).toBe(closed);
     expect(getOpeningHours('tuesday', '1:00-am')).toBe(closed);
+    expect(getOpeningHours('sunday', '12:30-am')).toBe(closed);
   });
-  it('Teste: Se retorna "The zoo is close" se for passado um horário que o zoológico devia estar fechado', () => {
-    expect(getOpeningHours('thursday', '8:00-pm')).toBe(closed);
-    expect(getOpeningHours('tuesday', '1:00-am')).toBe(closed);
+  it('Teste: Se lança os erros corretamente', () => {
+    expect(() => getOpeningHours('thrsday', '8:00-pm')).toThrow();
+    expect(() => getOpeningHours('thrsday', '8:00-pm')).toThrow('The day must be valid. Example: Monday');
+    expect(() => getOpeningHours('tuesday', '13:00-am')).toThrow();
+    expect(() => getOpeningHours('tuesday', '13:00-am')).toThrow('The hour must be between 0 and 12');
+    expect(() => getOpeningHours('saturday', '1:100-pm')).toThrow();
+    expect(() => getOpeningHours('saturday', '1:100-pm')).toThrow('The minutes must be between 0 and 59');
+    expect(() => getOpeningHours('monday', 'a')).toThrow();
+    expect(() => getOpeningHours('monday', 'a')).toThrow('The hour should represent a number');
+    expect(() => getOpeningHours('sunday', '7:00-gm')).toThrow();
+    expect(() => getOpeningHours('sunday', '7:00-sm')).toThrow('The abbreviation must be \'AM\' or \'PM\'');
   });
 });
