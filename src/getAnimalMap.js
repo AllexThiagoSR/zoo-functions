@@ -1,6 +1,4 @@
-const data = require('../data/zoo_data');
-
-const { species } = data;
+const { species } = require('../data/zoo_data');
 
 // Função que receber um array e um boolean e com isso decide se o array será ordenado ou não
 const sortedOrNo = (thingToSort, sort) =>
@@ -59,9 +57,7 @@ const checkPath = ({ includeNames, sex, sorted }) => {
 };
 
 // Função principal
-const getAnimalMap = (options) => {
-  if (!isObject(options)) return nullMapMaker(getLocations());
-  return checkPath(options);
-};
+const getAnimalMap = (options) =>
+  (!isObject(options) ? nullMapMaker(getLocations()) : checkPath(options));
 
 module.exports = getAnimalMap;
