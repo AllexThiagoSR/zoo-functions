@@ -4,12 +4,9 @@ const { species } = data;
 
 const countAnimals = (animal) => {
   if (!animal) {
-    return species.reduce((animals, { name, residents }) => ({
-      ...animals,
-      [name]: residents.length,
-    }), {});
+    return species
+      .reduce((animals, { name, residents }) => ({ ...animals, [name]: residents.length }), {});
   }
-
   const { species: specie, sex: sexReq } = animal;
   const residentsFound = species.find(({ name }) => name === specie).residents;
 
