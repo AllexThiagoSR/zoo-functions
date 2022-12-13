@@ -16,7 +16,7 @@ const creatClosedDay = () => ({
   exhibition: 'The zoo will be closed!',
 });
 
-const checkAnimal = (animal) => species.find(({ name }) => name === animal);
+const checkAnimal = (animalName) => species.find(({ name }) => name === animalName);
 
 const creatClosedOrNotClosed = (day) =>
   (!closedDays.includes(day) ? creatDaySchedule(day) : creatClosedDay());
