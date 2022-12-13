@@ -20,20 +20,20 @@ const creatClosedDay = () => ({
 
 const checkAnimal = (animal) => species.find(({ name }) => name === animal);
 
-const isClosed = (day) => (!closedDays.includes(day) ? creatDaySchedule(day) : creatClosedDay());
+const creatClosedAndNotClosed = (day) =>
+  (!closedDays.includes(day) ? creatDaySchedule(day) : creatClosedDay());
 
 const getSchedule = (target) => {
   const days = Object.keys(hours);
   const animal = checkAnimal(target);
 
   if (animal !== undefined) return animal.availability;
-  if (days.includes(target)) return { [target]: isClosed(target) };
+  if (days.includes(target)) return { [target]: creatClosedAndNotClosed(target) };
   return days.reduce((schedule, currDay) => {
     const auxi = { ...schedule };
-    auxi[currDay] = isClosed(currDay);
+    auxi[currDay] = creatClosedAndNotClosed(currDay);
     return auxi;
   }, {});
 };
 
-console.log(getSchedule());
 module.exports = getSchedule;
