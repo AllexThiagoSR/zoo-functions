@@ -11,7 +11,7 @@ const countEntrants = (entrants) => entrants.reduce((count, { age }) => {
 }, { child: 0, adult: 0, senior: 0 });
 
 const calculateEntry = (entrants) => {
-  if (entrants.length === 0 || !Array.isArray(entrants)) return 0;
+  if (!Array.isArray(entrants) || entrants.length === 0) return 0;
   const counted = countEntrants(entrants);
   return Object.keys(counted).reduce((acc, curr) => acc + prices[curr] * counted[curr], 0);
 };
