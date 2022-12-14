@@ -1,6 +1,4 @@
-const data = require('../data/zoo_data');
-
-const { species, employees } = data;
+const { species, employees } = require('../data/zoo_data');
 
 const findEmployeeResponsabilities = (employeeId) =>
   employees.find(({ id }) => employeeId === id).responsibleFor;
