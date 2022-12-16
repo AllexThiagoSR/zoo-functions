@@ -22,7 +22,7 @@ const creatCoverage = ({ firstName, lastName, responsibleFor, id }) => ({
   locations: getLocations(responsibleFor),
 });
 
-const coverageAllEmployees = () => employees.map((employee) => creatCoverage(employee));
+const coverageAllEmployees = () => employees.map(creatCoverage);
 
 const getEmployeesCoverage = (info) => {
   const employee = getEmployee(info);
