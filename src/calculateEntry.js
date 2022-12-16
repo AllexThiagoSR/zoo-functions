@@ -2,8 +2,8 @@ const data = require('../data/zoo_data');
 
 const { prices } = data;
 
-const creatObject = () =>
-  Object.keys(prices).reduce((finaObj, currKey) => ({ ...finaObj, [currKey]: 0 }), {});
+const creatObject = (array) =>
+  array.reduce((finaObj, currKey) => ({ ...finaObj, [currKey]: 0 }), {});
 
 const countEntrants = (entrants) => entrants.reduce((count, { age }) => {
   let { child, adult, senior } = count;
@@ -11,7 +11,7 @@ const countEntrants = (entrants) => entrants.reduce((count, { age }) => {
   else if (age >= 18 && age < 50) adult += 1;
   else senior += 1;
   return { child, adult, senior };
-}, creatObject());
+}, creatObject(prices));
 
 const calculateEntry = (entrants) => {
   if (!Array.isArray(entrants) || entrants.length === 0) return 0;
