@@ -1,17 +1,16 @@
-const data = require('../data/zoo_data');
+const { species } = require('../data/zoo_data');
 
-const { species } = data;
+const undefinedSpecie = () =>
+  species.reduce((animals, { name, residents }) => ({ ...animals, [name]: residents.length }), {});
+
+const findResidents = (specie) => species.find(({ name }) => name === specie).residents;
+
+const filterResidentsBySex = (residents, sexReq) => residents.filter(({ sex }) => sex === sexReq);
 
 const countAnimals = (animal) => {
-  if (!animal) {
-    return species
-      .reduce((animals, { name, residents }) => ({ ...animals, [name]: residents.length }), {});
-  }
-  const { species: specie, sex: sexReq } = animal;
-  const residentsFound = species.find(({ name }) => name === specie).residents;
-
-  if (!sexReq) return residentsFound.length;
-  return residentsFound.filter(({ sex }) => sex === sexReq).length;
+  if (!animal) return undefinedSpecie();
+  if (!animal.sex) return findResidents(animal.species).length;
+  return filterResidentsBySex(findResidents(animal.species), animal.sex).length;
 };
 
 module.exports = countAnimals;
