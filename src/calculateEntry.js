@@ -3,7 +3,7 @@ const data = require('../data/zoo_data');
 const { prices } = data;
 
 const creatObject = (array) =>
-  array.reduce((finaObj, currKey) => ({ ...finaObj, [currKey]: 0 }), {});
+  Object.keys(array).reduce((finaObj, currKey) => ({ ...finaObj, [currKey]: 0 }), {});
 
 const countEntrants = (entrants) => entrants.reduce((count, { age }) => {
   let { child, adult, senior } = count;
