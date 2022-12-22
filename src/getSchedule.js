@@ -21,13 +21,16 @@ const checkAnimal = (animalName) => species.find(({ name }) => name === animalNa
 const creatClosedOrNotClosed = (day) =>
   (!closedDays.includes(day) ? creatDaySchedule(day) : creatClosedDay());
 
+const creatAllDaysSchedule = (days) =>
+  days.reduce((schedule, currDay) =>
+    ({ ...schedule, [currDay]: creatClosedOrNotClosed(currDay) }), {});
+
 const getSchedule = (target) => {
   const days = Object.keys(hours);
   const animal = checkAnimal(target);
   if (animal !== undefined) return animal.availability;
   if (days.includes(target)) return { [target]: creatClosedOrNotClosed(target) };
-  return days.reduce((schedule, currDay) =>
-    ({ ...schedule, [currDay]: creatClosedOrNotClosed(currDay) }), {});
+  return creatAllDaysSchedule(days);
 };
 
 module.exports = getSchedule;
